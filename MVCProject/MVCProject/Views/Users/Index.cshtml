@@ -1,0 +1,112 @@
+﻿@model IEnumerable<MVCProject.Models.User>
+
+@*@{
+        Layout = null;
+    }*@
+
+<!DOCTYPE html>
+<style>
+    .headerdiv {
+        padding-bottom: 0px;
+        text-align: center;
+        font-size: 10px;
+        background-color: #31302a;
+    }
+
+    body {
+        font-family: Arial;
+        margin: auto;
+        background-color: #e0ffe9;
+    }
+    .button5 {
+        background-color: #e0ffe9;
+        color: black;
+        border: 2px solid #555555;
+    }
+
+        .button5:hover {
+            background-color: #555555;
+            color: white;
+        }
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List of Users</title>
+</head>
+<body>
+    <div style="text-align: center" class="form-horizontal">
+        <div class="headerdiv">
+            <img style="padding-bottom=fixed;" src="~/Content/logo_eng.png" />
+
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelutem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        @using (Html.BeginForm("AdminIndex", "Admin"))
+        {
+            <button class="button button5">Back</button>
+        }
+    </div>
+</body>
+</html>

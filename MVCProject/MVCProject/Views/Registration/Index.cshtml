@@ -1,0 +1,93 @@
+﻿@model IEnumerable<MVCProject.Models.Grade>
+
+
+<!DOCTYPE html>
+<style>
+    .headerdiv {
+        padding-bottom: 0px;
+        text-align: center;
+        font-size: 10px;
+        background-color: #31302a;
+    }
+
+    body {
+        font-family: Arial;
+        margin: auto;
+        background-color: #e0ffe9;
+    }
+
+    .button5 {
+        background-color: #e0ffe9;
+        color: black;
+        border: 2px solid #555555;
+    }
+
+        .button5:hover {
+            background-color: #555555;
+            color: white;
+        }
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div style="text-align: center" class="form-horizontal">
+        <div class="headerdiv">
+            <img style="padding-bottom=fixed;" src="~/Content/logo_eng.png" />
+
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Create New", "AddStudentToCourse")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Courseid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GradeMoedA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GradeMoedB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Studentid)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courseid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GradeMoedA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GradeMoedB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Studentid)
+                </td>
+
+                <td>
+                    
+                    @Html.ActionLink("Delete", "Delete", new { idstudent = item.Studentid, idcourse = item.Courseid })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        @using (Html.BeginForm("AdminIndex", "Admin"))
+        {
+            <button class="button button5">Back</button>
+        }
+    </div>
+</body>
+</html>

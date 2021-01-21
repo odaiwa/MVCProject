@@ -1,0 +1,99 @@
+﻿@model MVCProject.Models.User
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lecturer</title>
+    <style>
+        .button {
+            border: thin;
+            border-color: black;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        body {
+            font-family: Arial;
+            margin: auto;
+            background-color: #e0ffe9;
+        }
+
+        .headerdiv {
+            padding-bottom: 0px;
+            text-align: center;
+            font-size: 10px;
+            background-color: #31302a;
+        }
+
+
+
+        .button5 {
+            background-color: #e0ffe9;
+            color: black;
+            border: 2px solid #555555;
+        }
+
+            .button5:hover {
+                background-color: #555555;
+                color: white;
+            }
+
+        div {
+            border-bottom: solid;
+            border-bottom-color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div style="text-align: center" class="form-horizontal">
+        <div class="headerdiv">
+            <img style="padding-bottom=fixed;" src="~/Content/logo_eng.png" />
+
+        </div>
+    </div>
+
+
+
+    
+        <center> <h1>Welcome , @Html.DisplayFor(x => x.FirstName) @Html.DisplayFor(x => x.LastName) </h1></center>
+    
+
+    <center>
+        <div>
+
+            <br />
+            <br />
+            <br />
+            <br />
+
+            @using (Html.BeginForm("ShowStudents", "Lecturer", FormMethod.Post))
+            {
+
+                <button class="button button5">View Courses</button>
+                <br />
+
+
+            }
+        </div>
+
+    </center>
+    <div style="position: absolute; bottom: 0; left: 0; width: 100px; text-align:right;">
+        @using (Html.BeginForm("Index", "LogIn"))
+        {
+            <button class="button button5">Logout</button>
+        }
+    </div>
+</body>
+</html>

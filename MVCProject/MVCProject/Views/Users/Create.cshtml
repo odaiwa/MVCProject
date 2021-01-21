@@ -1,0 +1,145 @@
+﻿@model MVCProject.Models.User
+@*@model IEnumerable<MVCProject.Models.User>*@
+
+@*@{
+        Layout = null;
+    }*@
+<!-- font-awesome icons -->
+<link href="~/Content/TextFile1.css" rel="stylesheet">
+<!-- //font-awesome icons -->
+<link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Basic Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="~/Scripts/jquery.min.js"></script>
+<script>
+    $(document).ready(function (c) {
+        $('.alert-close').on('click', function (c) {
+            $('.main-agile').fadeOut('slow', function (c) {
+                $('.main-agile').remove();
+            });
+        });
+    });
+</script>
+
+<!DOCTYPE html>
+<style>
+    .headerdiv {
+        padding-bottom: 0px;
+        text-align: center;
+        font-size: 10px;
+        background-color: #31302a;
+    }
+     body {
+        font-family: Arial;
+        margin: auto;
+        background-color: #e0ffe9;
+    }
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create New Users</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div style="text-align: center" class="form-horizontal">
+            <div class="headerdiv">
+                <img style="padding-bottom=fixed;" src="~/Content/logo_eng.png" />
+
+            </div>
+        </div>
+        <br/>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @type = "number", @required = "required", @placeholder = "Your Id", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                @if (TempData["idMSG"] != null)
+                {
+                    <label style="color:red"> @TempData["idMSG"].ToString()</label>
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @required = "required", @placeholder = "First Name", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                @if (TempData["exp"] != null)
+                {
+                    <label style="color:red"> @TempData["exp"]</label>
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @required = "required", @placeholder = "Last Name", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @required = "required", @placeholder = "User Name", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                @if (TempData["userMSG"] != null)
+                {
+                    <label style="color:red"> @TempData["userMSG"].ToString()</label>
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @required = "required", @placeholder = "Email", @type = "email", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                @if (TempData["emailMSG"] != null)
+                {
+                    <label style="color:red"> @TempData["emailMSG"].ToString()</label>
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @required = "required", @type = "password", @placeholder = "Password", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <br/>
+                @Html.DropDownListFor(model => model.Role, new List<SelectListItem> { new SelectListItem { Text = "Admin", Value = "Admin" }, new SelectListItem { Text = "Lecturer", Value = "Lecturer" }, new SelectListItem { Text = "Student", Value = "Student" } }, new { htmlAttributes = new { @required = "required", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <br/>
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+        
+    }
+
+    <div>
+        @Html.ActionLink("Back", "Index")
+    </div>
+</body>
+</html>

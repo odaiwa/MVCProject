@@ -1,0 +1,160 @@
+﻿@model MVCProject.LecturerViewModel.RegisterationViewModel
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Student To Course</title>
+
+    <style>
+
+        .button5 {
+            background-color: #e0ffe9;
+            color: black;
+            border: 2px solid #555555;
+        }
+
+            .button5:hover {
+                background-color: #555555;
+                color: white;
+            }
+
+        .headerdiv {
+            padding-bottom: 0px;
+            text-align: center;
+            font-size: 10px;
+            background-color: #31302a;
+        }
+
+        .centerdiv {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+
+        body {
+            font-family: Arial;
+            margin: auto;
+            background-color: #e0ffe9;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center" class="form-horizontal">
+        <div class="headerdiv">
+            <img style="padding-bottom=fixed;" src="~/Content/logo_eng.png" />
+
+        </div>
+    </div>
+    <hr />
+    <br />
+    <br />
+    <div>
+        <div>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div>
+                    User ID :
+                    <div>
+
+                        @Html.EditorFor(model => model.Grade.Studentid, new { htmlAttributes = new { @required = "required", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Grade.Studentid, "", new { @class = "text-danger" })
+                        @if (TempData["userMSG"] != null)
+                        {
+                            <label style="color:red"> @TempData["userMSG"].ToString()</label>
+                        }
+                        else if (TempData["notFound1"] != null)
+                        {
+                            <label style="color:red"> @TempData["notFound1"].ToString()</label>
+                        }
+                        else if (TempData["sametime"] != null)
+                        {
+                            <label style="color: red"> @TempData["sametime"].ToString()</label>
+                        }
+
+
+                    </div>
+                </div>
+                <div>
+                    Course ID:
+                    <div>
+                        @*<input type="number" name="Courseid">*@
+                        @*@{
+                                var asd =TempData["odai"];
+                            }*@
+                        @Html.EditorFor(model => model.Grade.Courseid, new { htmlAttributes = new { @required = "required", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Grade.Courseid, "", new { @class = "text-danger" })
+                        @if (TempData["coursenotFOUND"] != null)
+                        {
+                            <label style="color:red">@TempData["coursenotFOUND"].ToString()</label>
+                        }
+                    </div>
+                </div>
+                <br />
+                <div>
+                    <input id="AddStudent" type="submit" value="Add Student" />
+
+                </div>
+
+            }
+        </div>
+        <h3>Courses Table</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var course in Model.courses)
+                {
+                    <tr>
+                        <td>@course.Courseid</td>
+                        <td>@course.NameCourse</td>
+                    </tr>
+                }
+            </tbody>
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var users in Model.users)
+                {
+                    <tr>
+                        <td>@users.Id</td>
+                        <td>@users.Username</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <br />
+    <br />
+    @using (Html.BeginForm("Index", "Registration", FormMethod.Post))
+    {
+        <button class="button button5">Back</button>
+    }
+</body>
+</html>
+
+
+@section scripts{
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $('#table').DataTable({})
+    </script>
+
+}

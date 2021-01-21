@@ -1,0 +1,113 @@
+﻿@model IEnumerable<MVCProject.Models.Cours>
+
+<!DOCTYPE html>
+<style>
+    .headerdiv {
+        padding-bottom: 0px;
+        text-align: center;
+        font-size: 10px;
+        background-color: #31302a;
+    }
+
+    body {
+        font-family: Arial;
+        margin: auto;
+        background-color: #e0ffe9;
+    }
+
+    .button5 {
+        background-color: #e0ffe9;
+        color: black;
+        border: 2px solid #555555;
+    }
+
+        .button5:hover {
+            background-color: #555555;
+            color: white;
+        }
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List of Courses </title>
+</head>
+<body>
+    <div style="text-align: center" class="form-horizontal">
+        <div class="headerdiv">
+            <img style="padding-bottom=fixed;" src="~/Content/logo_eng.png" />
+
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameCourse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LecturerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Day)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateMoedA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateMoedB)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameCourse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LecturerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeStart)
+                </td>
+                <td>
+                    @string.Format("{0:t}", item.TimeEnd)
+                    @*@string.Format("{0,HH:MM}", item.TimeEnd)*@
+                    @*@Html.DisplayFor(modelItem => item.TimeEnd)*@
+                </td>
+                <td>
+                    @string.Format("{0:dd/MM/yyyy}", item.DateMoedA)
+                    @*@Html.DisplayFor(modelItem => item.DateMoedA)*@
+                </td>
+                <td>
+                    @string.Format("{0:dd/MM/yyyy}", item.DateMoedB)
+                    @*@Html.DisplayFor(modelItem => item.DateMoedB)*@
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Courseid }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Courseid })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div>
+        @using (Html.BeginForm("AdminIndex", "Admin"))
+        {
+            <button class="button button5">Back</button>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MVCProject.Models.Cours>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Schedule</title>
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameCourse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Day)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeEnd)
+            </th>
+            <th>
+                Moed A
+            </th>
+            <th>
+                Moed B
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            @Html.HiddenFor(modelitem => item.lecturerID)
+            <tr>
+                <td>
+                    <a href="/Lecturer/StudentsTable?courseID=@item.Courseid">@item.NameCourse</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Day)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateMoedA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateMoedB)
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
